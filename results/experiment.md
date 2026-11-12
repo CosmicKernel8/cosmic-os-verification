@@ -1,51 +1,52 @@
-# Experiment 01: Euler Method Convergence
+# 실험 01: Euler 방법의 수렴성 검증
 
-## Objective
+## 실험 목적 (Objective)
 
-Verify the numerical accuracy of Euler's method for a simplified order-parameter transition equation from Cosmic OS.
+Cosmic OS에서 사용한 단순화된 질서 매개변수 전이 방정식을 대상으로 Euler 방법의 수치 계산 정확도를 검증한다.
 
-## Mathematical Model
+## 수학적 모델 (Mathematical Model)
 
-The simplified equation is:
+단순화된 방정식은 다음과 같다.
 
 `gamma * dpsi/dt = lambda * psi * (1 - psi^2)`
 
-Parameters:
+매개변수:
 - gamma = 2.0
 - lambda = 1.0
-- Initial condition: psi(0) = 0.1
-- Simulation interval: t = 0 to 10
+- 초기 조건: psi(0) = 0.1
+- 시뮬레이션 구간: t = 0부터 10까지
 
-The analytical solution for these parameters is:
+위 매개변수에 대한 해석해는 다음과 같다.
 
 `psi(t) = 1 / sqrt(1 + 99 * exp(-t))`
 
-## Method
+## 실험 방법 (Method)
 
-I implemented Euler's method in Python and compared the numerical results with the analytical solution.
+Python으로 Euler 방법을 구현하고, 수치 계산 결과를 해석해와 비교했다.
 
-I repeated the simulation using three different time steps: 0.1, 0.05, and 0.01.
+시간 간격(dt)을 0.1, 0.05, 0.01로 변경하며 총 세 번의 시뮬레이션을 진행했다.
 
-## Results
+## 실험 결과 (Results)
 
-Absolute errors at t = 4:
+t = 4에서 측정한 절대오차는 다음과 같다.
 
-| Time Step (dt) | Numerical Solution | Analytical Solution | Absolute Error |
-|---|---|---|---|
+| 시간 간격(dt) | 수치해 | 해석해 | 절대오차 |
+| --- | --- | --- | --- |
 | 0.1 | 0.583159 | 0.596205 | 0.013047 |
 | 0.05 | 0.589685 | 0.596205 | 0.006521 |
 | 0.01 | 0.594902 | 0.596205 | 0.001303 |
 
-## Findings
+## 주요 발견 (Findings)
 
-Reducing the time step reduced the numerical error.
+시간 간격을 줄일수록 수치 계산의 오차가 감소했다.
 
-When the time step decreased from 0.1 to 0.01, the absolute error at t = 4 decreased by approximately a factor of 10.
+시간 간격을 0.1에서 0.01로 줄였을 때, t = 4에서의 절대오차는 약 10분의 1로 감소했다.
 
-This result is consistent with the first-order convergence behavior of Euler's method.
+이는 Euler 방법의 1차 수렴 특성과 일치하는 결과다.
 
-## Limitations
+## 실험의 한계 (Limitations)
 
-This experiment verifies the numerical behavior of a simplified differential equation, not the physical validity of Cosmic OS or its cosmological predictions.
+이 실험은 단순화된 미분방정식에 대한 수치 계산의 특성을 확인한 것이며, Cosmic OS의 물리학적 타당성이나 우주론적 예측을 검증한 것은 아니다.
 
-Further work is required to test the full dissipative model and compare predictions with observational data.
+전체 소산 모델을 검증하고 예측 결과를 관측 데이터와 비교하려면 추가 연구가 필요하다.
+
