@@ -1,77 +1,38 @@
-# Cosmic OS Verification
+Cosmic OS Verification
+아이디어에서 검증으로 — Python 기반 수치 시뮬레이션 및 알고리즘 비교 프로젝트
 
-**From speculative ideas to reproducible experiments.**
+프로젝트 소개
+Cosmic OS는 정보, 엔트로피, 물리 시스템의 관계를 탐구하면서 시작한 개인 프로젝트입니다.
+탐구 과정에서 수학적 모델을 제안하는 것과 실제로 검증하는 것은 다르다는 문제를 발견했습니다.
+이를 계기로 Python을 활용해 미분방정식의 수치해를 계산하고, 해석해와 비교하는 검증 실험을 설계했습니다. 나아가 서로 다른 수치 계산 알고리즘의 정확도와 계산 비용을 비교했습니다.
 
-## 1. Project Overview
+Experiment 01. 수치 계산의 정확도 검증
+미분방정식에 Euler 방법을 적용하고, 시간 간격(dt)에 따른 오차 변화를 측정했습니다.
+시간 간격(dt)절대오차 (t=4)0.100.013046770.050.006520870.010.00130324
+시간 간격을 줄일수록 오차가 감소했으며, Euler 방법의 예상되는 1차 수렴 특성과 일치하는 결과를 얻었습니다.
+Experiment 02. 정확도와 계산 비용의 비교
+Euler 방법과 4차 Runge-Kutta 방법(RK4)을 동일한 미분방정식에 적용했습니다.
+단순히 오차가 작은 방법을 찾는 것이 아니라, 동일한 계산 비용에서 어느 방법이 더 정확한가? 라는 질문을 중심으로 실험했습니다.
+방법시간 간격(dt)기울기 계산 횟수절대오차Euler0.0580회0.0065208658RK40.2080회0.0000004623
+동일한 80회의 기울기 계산에서 RK4는 Euler보다 약 14,100배 작은 오차를 기록했습니다.
+이번 실험을 통해 계산 횟수를 늘리는 것만이 아니라, 문제에 적합한 알고리즘을 선택하는 것이 정확도에 큰 영향을 줄 수 있음을 확인했습니다.
 
-Cosmic OS began as a personal exploration of relationships between information, entropy, and physical systems.
+프로젝트 구성
+파일역할simulator.py미분방정식 시뮬레이션convergence_test.py시간 간격별 오차 분석compare_methods.pyEuler·RK4 정확도 및 계산 비용 비교plot_results.py실험 결과 시각화convergence_results.csv실험 01 데이터method_comparison.csv실험 02 데이터results/실험 과정 및 결과 기록
+실행 방법
+Python 3 환경에서 다음 명령어를 실행합니다.
 
-During its development, I recognized an important limitation: generating mathematical models and Python code with AI does not automatically establish that the models are correct.
-
-I therefore created this repository to take a more systematic approach: isolate a small mathematical model, implement it in Python, compare its numerical output with an analytical solution, and document the results.
-
-## 2. First Experiment: Numerical Convergence
-
-The first experiment examines a simplified order-parameter transition equation:
-
-`gamma * dpsi/dt = lambda * psi * (1 - psi^2)`
-
-Using Euler's method, I simulated the equation with three different time steps and compared the numerical results against an analytical solution.
-
-### Results
-
-| Time Step | Absolute Error at t=4 |
-|---|---|
-| 0.10 | 0.01304677 |
-| 0.05 | 0.00652087 |
-| 0.01 | 0.00130324 |
-
-The numerical error decreased as the time step became smaller, consistent with the expected first-order convergence behavior of Euler's method.
-
-![Euler Convergence Test](convergence_plot.png)
-
-## 3. Project Structure
-
-- `simulator.py` — Numerical simulation and analytical comparison
-- `convergence_test.py` — Automated convergence experiment
-- `plot_results.py` — Visualization of numerical errors
-- `convergence_results.csv` — Generated experiment data
-- `convergence_plot.png` — Experiment visualization
-- `results/experiment.md` — Experiment documentation
-
-## 4. How to Run
-
-Requirements:
-- Python 3
-- Matplotlib
-
-Install the plotting dependency:
-
-`python -m pip install matplotlib`
-
-Run the experiments:
-
-```bash
+python -m pip install matplotlib
 python simulator.py
 python convergence_test.py
 python plot_results.py
-```
+python compare_methods.py
+프로젝트를 통해 얻은 것
+이 프로젝트에서 가장 중요하게 생각한 것은 AI를 활용해 만든 결과를 검증 가능한 실험으로 발전시키는 과정입니다.
 
-## 5. Limitations
-
-This project verifies the numerical behavior of a simplified differential equation. It does not establish the physical validity of the broader Cosmic OS framework.
-
-The current experiment uses a known analytical solution and a basic numerical method. It is intended as an initial step toward more rigorous testing.
-
-## 6. Future Improvements
-
-- Add automated correctness tests
-- Compare Euler's method with higher-order numerical methods
-- Explore parameter sensitivity
-- Investigate whether more complex models produce testable predictions
-
-## 7. Development Approach
-
-AI tools assisted with code generation, debugging, and documentation.
-
-My goal is to move beyond accepting AI-generated outputs and toward independently testing, understanding, and improving them.
+추상적인 아이디어를 계산 가능한 문제로 구체화
+해석해를 기준으로 수치 계산의 정확도 측정
+서로 다른 알고리즘의 정확도와 계산 비용 비교
+실험 결과를 코드, 데이터, 그래프와 문서로 기록
+코드 구현과 실험 구성에는 AI의 도움을 활용했습니다. 실험 결과는 수치 계산 방법의 특성을 비교한 것이며, Cosmic OS의 물리학적 가설 자체를 입증하는 것은 아닙니다.
+앞으로는 이러한 검증 과정을 확장하고, AI가 생성한 코드의 작동 원리를 이해하며 독립적으로 개선할 수 있는 역량을 발전시키고자 합니다.
