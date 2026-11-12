@@ -28,7 +28,7 @@ Cosmic OS는 정보, 엔트로피, 물리 시스템의 관계를 탐구하면서
 
 Euler 방법과 4차 Runge-Kutta 방법(RK4)을 동일한 미분방정식에 적용했습니다.
 
-**동일한 계산 비용에서 어느 방법이 더 정확한가?** 라는 질문을 중심으로 비교했습니다.
+**동일한 기울기 계산 횟수에서 어느 방법이 더 정확한가?** 라는 질문을 중심으로 비교했습니다.
 
 | 방법 | 시간 간격(dt) | 기울기 계산 횟수 | 절대오차 (t=4) |
 | --- | --- | --- | --- |
@@ -41,6 +41,8 @@ Euler 방법과 4차 Runge-Kutta 방법(RK4)을 동일한 미분방정식에 적
 
 ※ 계산 비용은 실제 실행 시간이 아닌 기울기 평가 횟수를 기준으로 측정했습니다.
 
+![Euler와 RK4 오차 비교](method_comparison_plot.png)
+
 ## 프로젝트 구성
 
 | 파일 | 역할 |
@@ -48,10 +50,11 @@ Euler 방법과 4차 Runge-Kutta 방법(RK4)을 동일한 미분방정식에 적
 | `simulator.py` | 미분방정식 시뮬레이션 |
 | `convergence_test.py` | 시간 간격별 오차 분석 |
 | `compare_methods.py` | Euler·RK4 정확도 및 계산 비용 비교 |
-| `plot_results.py` | 실험 결과 시각화 |
-| `convergence_results.csv` | 실험 01 데이터 |
-| `method_comparison.csv` | 실험 02 데이터 |
-| `results/` | 실험 과정 및 결과 기록 |
+| `plot_results.py` | 실험 01 결과 시각화 |
+| `plot_method_comparison.py` | 실험 02 결과 시각화 |
+| `convergence_plot.png` | 실험 01 그래프 |
+| `method_comparison_plot.png` | 실험 02 그래프 |
+| `results/` | 실험 데이터 및 결과 기록 |
 
 ## 실행 방법
 
@@ -63,6 +66,7 @@ python simulator.py
 python convergence_test.py
 python plot_results.py
 python compare_methods.py
+python plot_method_comparison.py
 ```
 
 ## 프로젝트를 통해 얻은 것
@@ -79,4 +83,5 @@ python compare_methods.py
 실험 결과는 수치 계산 방법의 특성을 비교한 것이며, Cosmic OS의 물리학적 가설 자체를 입증하는 것은 아닙니다.
 
 앞으로는 이러한 검증 과정을 확장하고, AI가 생성한 코드의 작동 원리를 이해하며 독립적으로 개선할 수 있는 역량을 발전시키고자 합니다.
+
 
