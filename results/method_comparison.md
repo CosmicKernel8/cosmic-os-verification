@@ -1,43 +1,43 @@
-# Experiment 02: Euler vs RK4
+# 실험 02: Euler 방법과 RK4 비교
 
-## Objective
+## 실험 목적 (Objective)
 
-Compare the numerical accuracy and computational cost of Euler's method and the fourth-order Runge-Kutta method (RK4).
+Euler 방법과 4차 Runge-Kutta 방법(RK4)의 수치 계산 정확도와 계산 비용을 비교한다.
 
-## Method
+## 실험 방법 (Method)
 
-Both algorithms were applied to the same simplified differential equation used in Experiment 01.
+실험 01에서 사용한 동일한 단순화된 미분방정식에 두 알고리즘을 적용했다.
 
-The numerical solutions were compared against the analytical solution at t = 4.
+t = 4에서 계산한 수치해를 해석해와 비교했다.
 
-Computational cost was measured using the number of derivative evaluations, not execution time.
+계산 비용은 실제 실행 시간이 아닌 도함수(기울기) 평가 횟수를 기준으로 측정했다.
 
-## Results
+## 실험 결과 (Results)
 
-| Method | Time Step | Derivative Evaluations | Absolute Error |
-|---|---|---|---|
-| Euler | 0.20 | 20 | 0.0260704649 |
-| RK4 | 0.20 | 80 | 0.0000004623 |
-| Euler | 0.10 | 40 | 0.0130467699 |
-| RK4 | 0.10 | 160 | 0.0000000295 |
-| Euler | 0.05 | 80 | 0.0065208658 |
-| RK4 | 0.05 | 320 | 0.0000000019 |
-| Euler | 0.01 | 400 | 0.0013032433 |
-| RK4 | 0.01 | 1600 | Less than 0.00000000005 (based on rounded output) |
+| 계산 방법 | 시간 간격(dt) | 기울기 계산 횟수 | 절대오차 |
+| --- | --- | --- | --- |
+| Euler | 0.20 | 20회 | 0.0260704649 |
+| RK4 | 0.20 | 80회 | 0.0000004623 |
+| Euler | 0.10 | 40회 | 0.0130467699 |
+| RK4 | 0.10 | 160회 | 0.0000000295 |
+| Euler | 0.05 | 80회 | 0.0065208658 |
+| RK4 | 0.05 | 320회 | 0.0000000019 |
+| Euler | 0.01 | 400회 | 0.0013032433 |
+| RK4 | 0.01 | 1600회 | 0.00000000005 미만 (소수점 10자리 반올림 출력 기준) |
 
-## Key Finding
+## 주요 발견 (Key Finding)
 
-At a budget of 80 derivative evaluations:
+기울기 계산 횟수를 80회로 동일하게 설정했을 때 다음과 같은 결과를 얻었다.
 
-- Euler (dt = 0.05) produced an error of approximately 0.00652.
-- RK4 (dt = 0.20) produced an error of approximately 0.000000462.
+- Euler (dt = 0.05): 절대오차 약 0.00652
+- RK4 (dt = 0.20): 절대오차 약 0.000000462
 
-Under these conditions, RK4 achieved approximately 14,100 times lower absolute error with the same number of derivative evaluations.
+이 조건에서 RK4는 동일한 기울기 계산 횟수로 Euler보다 약 14,100배 작은 절대오차를 기록했다.
 
-## Limitations
+## 실험의 한계 (Limitations)
 
-This result applies to the tested equation, parameters, and time interval.
+이 결과는 실험에 사용한 방정식, 매개변수 및 시간 구간에 한정된다.
 
-Derivative evaluation counts do not represent complete runtime or memory costs.
+기울기 계산 횟수는 실제 실행 시간이나 전체 메모리 사용량을 나타내지 않는다.
 
-The experiment does not validate the broader physical hypotheses of Cosmic OS.
+또한 이 실험은 Cosmic OS의 광범위한 물리학적 가설을 검증한 것이 아니다.
