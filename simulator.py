@@ -1,4 +1,3 @@
-
 import math
 
 gamma = 2.0
